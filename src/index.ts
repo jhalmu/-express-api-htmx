@@ -1,6 +1,5 @@
 import dotenv from 'dotenv';
 import express, { NextFunction, Request, RequestHandler, Response } from "express";
-//import cors from "cors";
 
 dotenv.config();
 const app = express();
@@ -12,27 +11,19 @@ app.use(express.json());
 let users = [
     {
         id: 1,
-        name: 'Simon',
+        name: 'Erkki',
     },
     {
         id: 2,
-        name: 'Brett',
+        name: 'Merkki',
     },
     {
         id: 3,
-        name: 'Test',
+        name: 'Rooma',
     },
 ];
 
-// CREATE
-app.post('/users', (req, res) => {
-    const newUser = {
-        name: req.body.name,
-        id: Date.now()
-    };
-    users.push(newUser);
-    res.json(newUser);
-});
+
 
 const isAuthorized: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization;
@@ -44,10 +35,16 @@ const isAuthorized: RequestHandler = (req: Request, res: Response, next: NextFun
     }
 };
 
+// NEEDS AUTH ENDPOINTS
 
-// READ
-app.get("/users", isAuthorized, (req, res) => {
-    res.json(users);
+// CREATE
+app.post('/users', isAuthorized, (req, res) => {
+    const newUser = {
+        name: req.body.name,
+        id: Date.now()
+    };
+    users.push(newUser);
+    res.json(newUser);
 });
 
 // UPDATE
@@ -62,19 +59,28 @@ app.put('/users/:id', isAuthorized, (req, res) => {
     res.json(users);
 });
 
-// GET ONE USER
-app.get('/users/:id', isAuthorized, (req, res) => {
-    const id = +req.params.id;
-    const user = users.filter((user) => user.id === id)[0];
-    res.json(user);
-});
-
 // DELETE
 app.delete('/users/:id', isAuthorized, (req, res) => {
     const { id } = req.body;
     users = users.filter((user) => user.id !== id);
     res.json(users);
 });
+
+// NOT AUTH ENDPOINTS
+
+// READ
+app.get("/users", (req, res) => {
+    res.json(users);
+});
+
+// GET ONE USER
+app.get('/users/:id', (req, res) => {
+    const id = +req.params.id;
+    const user = users.filter((user) => user.id === id)[0];
+    res.json(user);
+});
+
+
 
 
 // healthcheck endpoint

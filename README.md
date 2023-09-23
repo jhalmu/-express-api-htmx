@@ -9,4 +9,3 @@ Välillä jotain muuta. Tarkoituksena siis Expressjs API kaikella mitä nyt san 
 - DB SQLlite?
 - Authentication
 - Muuta?
-

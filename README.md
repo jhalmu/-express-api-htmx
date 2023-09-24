@@ -1,11 +1,3 @@
-# API /w Express+HTMX+DB+Authentication
+# 24.9.2023
 
-## 23.9.2023
-
-Välillä jotain muuta. Tarkoituksena siis Expressjs API kaikella mitä nyt san sisällytettyä.
-
-- Express js
-- HTMX
-- DB SQLlite?
-- Authentication
-- Muuta?
+No lähdin uudestaan eri kulmasta liikkeelle. Handlebars. Sitä muistaakseni myös Ghost käyttää. No joo kyllä apien tekijöitä riittää mutta harvassa ovat he jotka kertovat miten niillä oikeasti tehdään jotain. Eli niinku on formi ja sit joku kiva tietokanta ja forech looppi.
